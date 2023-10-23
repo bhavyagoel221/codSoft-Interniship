@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator using HTML CSS And JAVA SCRIPT</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <table class="calculator">
+       
+          <tr>
+            <td colspan="3"> <input class="display-box" type="text" id="display" /> </td>
+            <td> <input type="button" value="AC" onclick="clearDisplay()" id="btn" /> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="1" onclick="appendToDisplay('1')"/> </td>
+            <td> <input type="button" value="2" onclick="appendToDisplay('2')"/> </td>
+            <td> <input type="button" value="3" onclick="appendToDisplay('3')"/> </td>
+            <td> <input type="button" value="/" onclick="appendToDisplay('/')"/> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="4" onclick="appendToDisplay('4')"/> </td>
+            <td> <input type="button" value="5" onclick="appendToDisplay('5')"/> </td>
+            <td> <input type="button" value="6" onclick="appendToDisplay('6')"/> </td>
+            <td> <input type="button" value="-" onclick="appendToDisplay('-')"/> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="7" onclick="appendToDisplay('7')"/> </td>
+            <td> <input type="button" value="8" onclick="appendToDisplay('8')"/> </td>
+            <td> <input type="button" value="9" onclick="appendToDisplay('9')"/> </td>
+            <td> <input type="button" value="+" onclick="appendToDisplay('+')"/> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="." onclick="appendToDisplay('.')"/> </td>
+            <td> <input type="button" value="0" onclick="appendToDisplay('0')"/> </td>
+            <td> <input type="button" value="=" onclick="calculateResult()" id="btn"/> </td>
+            <td> <input type="button" value="*" onclick="appendToDisplay('*')"/> </td>
+          </tr>
+        </table>
+    <script src="script.js"></script>
+    
+</body>
+</html>
+<style>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator using HTML CSS And JAVA SCRIPT</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <table class="calculator">
+       
+          <tr>
+            <td colspan="3"> <input class="display-box" type="text" id="display" /> </td>
+            <td> <input type="button" value="AC" onclick="clearDisplay()" id="btn" /> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="1" onclick="appendToDisplay('1')"/> </td>
+            <td> <input type="button" value="2" onclick="appendToDisplay('2')"/> </td>
+            <td> <input type="button" value="3" onclick="appendToDisplay('3')"/> </td>
+            <td> <input type="button" value="/" onclick="appendToDisplay('/')"/> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="4" onclick="appendToDisplay('4')"/> </td>
+            <td> <input type="button" value="5" onclick="appendToDisplay('5')"/> </td>
+            <td> <input type="button" value="6" onclick="appendToDisplay('6')"/> </td>
+            <td> <input type="button" value="-" onclick="appendToDisplay('-')"/> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="7" onclick="appendToDisplay('7')"/> </td>
+            <td> <input type="button" value="8" onclick="appendToDisplay('8')"/> </td>
+            <td> <input type="button" value="9" onclick="appendToDisplay('9')"/> </td>
+            <td> <input type="button" value="+" onclick="appendToDisplay('+')"/> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="." onclick="appendToDisplay('.')"/> </td>
+            <td> <input type="button" value="0" onclick="appendToDisplay('0')"/> </td>
+            <td> <input type="button" value="=" onclick="calculateResult()" id="btn"/> </td>
+            <td> <input type="button" value="*" onclick="appendToDisplay('*')"/> </td>
+          </tr>
+        </table>
+    <script src="script.js"></script>
+    
+</body>
+</html>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.calculator {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 300px;
+    background-color: #FFCCCB;
+}
+
+#display {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+button {
+    padding: 10px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+button:hover {
+    background-color: #45a049;
+}
+
+</style>
+<script>
+let currentValue = '';
+let operator = '';
+const display = document.getElementById('display');
+
+for (let i = 0; i <= 9; i++) {
+    document.getElementById(i.toString()).addEventListener('click', () => {
+        appendToDisplay(i.toString());
+    });
+}
+
+document.getElementById('.').addEventListener('click', () => {
+    appendToDisplay('.');
+});
+
+const operators = ['+', '-', '*', '/'];
+for (const operator of operators) {
+    document.getElementById(operator).addEventListener('click', () => {
+        appendToDisplay(' ' + operator + ' ');
+    });
+}
+
+document.getElementById('=').addEventListener('click', () => {
+    calculateResult();
+});
+
+document.getElementById('AC').addEventListener('click', () => {
+    clearDisplay();
+});
+
+function appendToDisplay(value) {
+    currentValue += value;
+    display.value = currentValue;
+}
+
+function clearDisplay() {
+    currentValue = '';
+    operator = '';
+    display.value = '';
+}
+
+function operate(op) {
+    operator = op;
+    currentValue += ' ' + operator + ' ';
+    display.value = currentValue;
+}
+
+function calculateResult() {
+    try {
+        currentValue = eval(currentValue);
+        display.value = currentValue;
+    } catch (error) {
+        display.value = 'Error';
+    }
+}
+</script>
+
